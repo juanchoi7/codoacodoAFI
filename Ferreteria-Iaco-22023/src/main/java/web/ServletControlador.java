@@ -18,6 +18,7 @@ public class ServletControlador extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "eliminar":
+                    eliminarTornillo(req, res);
                     break;
                 case "editar":
                     editarTornillo(req, res);
@@ -46,7 +47,7 @@ public class ServletControlador extends HttpServlet {
                     insertarTornillo(req, res);
                     break;
                 case "actualizarStock":
-                    accionDefault(req, res);
+                    updateStock(req, res);
                     break;
                 case "modificar":
                     String subAccion = req.getParameter("btnAccion");
@@ -89,8 +90,6 @@ public class ServletControlador extends HttpServlet {
         tornillos.forEach(System.out::println);
         HttpSession sesion = req.getSession();
         sesion.setAttribute("tornillos", tornillos);
-        //sesion.setAttribute("cantidadTornillos", calcularStock(tornillos));
-        //sesion.setAttribute("precioTotal", calcularPrecio(tornillos));
         res.sendRedirect("tornillosEliminados.jsp");
     }
 
@@ -106,9 +105,7 @@ public class ServletControlador extends HttpServlet {
         int stock = Integer.parseInt(req.getParameter("stock"));
 
         Ferreteria tornillo = new Ferreteria(codigoSku, descripcion, pesoUnidad, precio, stock);
-
         int registrosMod = new FerreteriaDAO().insert(tornillo);
-
         System.out.println("insertados = " + registrosMod);
 
         accionDefault(req, res);
@@ -143,36 +140,34 @@ public class ServletControlador extends HttpServlet {
         int stock = Integer.parseInt(req.getParameter("stock"));
 
         Ferreteria tornillo = new Ferreteria(idTornillo, codigoSku, descripcion, pesoUnidad, precio, stock);
-
         int registrosMod = new FerreteriaDAO().updateTornillo(tornillo);
-
         System.out.println("modificados = " + registrosMod);
-
         accionDefault(req, res);
     }
 
     private void eliminarTornillo(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int idTornillo = Integer.parseInt(req.getParameter("idtornillo"));
-
-        Ferreteria tornillo = new Ferreteria(idTornillo, "", "", 0, 0, 0);
-
+        Ferreteria tornillo = new Ferreteria(idTornillo);
         int registrosDel = new FerreteriaDAO().deleteTornillo(tornillo);
-
         System.out.println("eliminados = " + registrosDel);
+        accionDefault(req, res);
+    }
 
+    private void updateStock(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        int idTornillo = Integer.parseInt(req.getParameter("idtornillo"));
+        int stock = Integer.parseInt(req.getParameter("stock"));
+        Ferreteria tornillo = new Ferreteria(idTornillo, stock);
+        int registrosDel = new FerreteriaDAO().updateStock(tornillo);
+        System.out.println("eliminados = " + registrosDel);
         accionDefault(req, res);
     }
 
     private void reactivarTornillo(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int idTornillo = Integer.parseInt(req.getParameter("idtornillo"));
         System.out.println("Reactivando tornillo " + idTornillo);
-
-        Ferreteria tornillo = new Ferreteria(idTornillo, "", "", 0, 0, 0);
-
+        Ferreteria tornillo = new Ferreteria(idTornillo);
         int registrosDel = new FerreteriaDAO().reactivaTornillo(tornillo);
-
         System.out.println("reactivado = " + registrosDel);
-
         visualizarEliminados(req, res);
     }
 

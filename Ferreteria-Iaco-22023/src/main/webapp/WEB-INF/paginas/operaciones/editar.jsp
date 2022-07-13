@@ -12,53 +12,69 @@
 
         <jsp:include page="/WEB-INF/paginas/comunes/cabecera.jsp"/>
 
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-                <form action="${pageContext.request.contextPath}/servletControlador?accion=modificar" method="POST" class="was-validated">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="codigoSku">Codigo SKU</label>
-                            <input type="text" class="form-control" name="codigoSku" required="" value="${tornillo.codigoSku}">
-                        </div>
-                        <div class="form-group">
-                            <label for="descripcion">Descripcion</label>
-                            <input type="text" class="form-control" name="descripcion" required="" value="${tornillo.descripcion}">
-                        </div>
-                        <div class="form-group">
-                            <label for="pesoUnidad">Peso por Unidad</label>
-                            <input type="number" class="form-control" name="pesoUnidad"  value="${tornillo.pesoUnidad}">
-                        </div>
-                        <div class="form-group">
-                            <label for="precio">Valor del Tornillo</label>
-                            <input type="currency" class="form-control" name="precio" required="" value="${tornillo.precio}">
-                        </div>
-                        <div class="form-group">
-                            <label for="stock">Cantidad en Stock</label>
-                            <input type="number" class="form-control" name="stock" required="" value="${tornillo.stock}">
-                            <input type="hidden" class="form-control" name="idtornillo" value="${tornillo.idtornillo}">
-                        </div>
+        <section id="actions" class="py-2 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
                     </div>
-
-                        
-                    <div class="modal-footer">
-                        <table>
-                            <tr>
-                                <td>
-                                    <button class="btn btn-primary" type="submit" value="Modificar" name="btnAccion">Guardar</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-secondary" type="submit" value="Cancelar" name="btnAccion">Cancelar</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger" type="submit" value="Eliminar" name="btnAccion">Eliminar</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section id="tornillos">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Edicion de Tornillos</h4>
+                            </div>
+                            <form action="${pageContext.request.contextPath}/servletControlador?accion=modificar" method="POST" class="was-validated">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="codigoSku">Codigo SKU</label>
+                                        <input type="text" class="form-control" name="codigoSku" required="" value="${tornillo.codigoSku}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descripcion">Descripci&oacute;n</label>
+                                        <input type="text" class="form-control" name="descripcion" required="" value="${tornillo.descripcion}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pesoUnidad">Peso por Unidad</label>
+                                        <input type="number" class="form-control" name="pesoUnidad"  value="${tornillo.pesoUnidad}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="precio">Valor del Tornillo</label>
+                                        <input type="currency" class="form-control" name="precio" required="" value="${tornillo.precio}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stock">Cantidad en Stock</label>
+                                        <input type="number" class="form-control" name="stock" required="" value="${tornillo.stock}">
+                                        <input type="hidden" class="form-control" name="idtornillo" value="${tornillo.idtornillo}">
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-primary" type="submit" value="Modificar" name="btnAccion">Guardar</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-secondary" type="submit" value="Cancelar" name="btnAccion">Cancelar</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" type="submit" value="Eliminar" name="btnAccion">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <jsp:include page="/WEB-INF/paginas/comunes/pieDePagina.jsp"/>
 

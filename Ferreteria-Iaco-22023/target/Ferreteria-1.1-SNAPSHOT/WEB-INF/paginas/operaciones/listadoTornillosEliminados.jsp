@@ -35,8 +35,8 @@
                                     <td><fmt:formatNumber value="${tornillo.precio}" type="currency"/></td>
                                     <td>${tornillo.stock}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/servletControlador?accion=reactivar&idtornillo=${tornillo.idtornillo}" class="btn btn-secondary">
-                                            <i class="fas fa-angle-double-right"></i>
+                                        <a href="${pageContext.request.contextPath}/servletControlador?accion=reactivar&idtornillo=${tornillo.idtornillo}" class="btn btn-success">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
                                             Reactivar
                                         </a>
                                     </td>

@@ -20,8 +20,8 @@
                                 <th>Peso (grs)</th>
                                 <th>Precio</th>
                                 <th>Stock</th>
-                                <th class="text-center">Accion</th>
-                                <th class="text-center">Accion</th>
+                                <th class="text-center">Acciones</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -35,21 +35,41 @@
                                     <td class="text-center">${tornillo.pesoUnidad}</td>
                                     <td><fmt:formatNumber value="${tornillo.precio}" type="currency"/></td>
                                     <td>${tornillo.stock}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="${pageContext.request.contextPath}/servletControlador?accion=editar&idtornillo=${tornillo.idtornillo}" class="btn btn-secondary">
                                             <i class="fas fa-angle-double-right"></i>
                                             Editar
                                         </a>
-                                    </td>
-                                    <td>
-                                        <a href="" class="btn btn-secondary"
+                                        <%-- 
+                                        <a href="" class="btn btn-primary"
                                            data-bs-toggle="modal" 
-                                           data-bs-target="#actualizarStockModal"
-                                           >
-                                            <i class="fas fa-angle-double-right"></i>
-                                            Stock
+                                           data-bs-target="#actualizarStockModal" >
+                                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                         </a>
-                                    </td>                         
+                                        --%>
+
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateStockModal" 
+                                                data-bs-idtornillo="${tornillo.idtornillo}" 
+                                                data-bs-codigoSku="${tornillo.codigoSku}"
+                                                data-bs-descripcion="${tornillo.descripcion}"
+                                                data-bs-stock="${tornillo.stock}" >
+                                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                        </button>  
+                                            
+                                        <%--    
+                                        <a href="${pageContext.request.contextPath}/servletControlador?accion=eliminar&idtornillo=${tornillo.idtornillo}" class="btn btn-danger">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </a>
+                                        --%>
+
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" 
+                                                data-bs-idtornillo="${tornillo.idtornillo}" 
+                                                data-bs-codigoSku="${tornillo.codigoSku}"
+                                                data-bs-descripcion="${tornillo.descripcion}"
+                                                data-bs-stock="${tornillo.stock}" >
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -76,5 +96,10 @@
         </div>
     </div>
 </section>
+
+
+
+
 <jsp:include page="/WEB-INF/paginas/operaciones/agregarTornillo.jsp"/>
 <jsp:include page="/WEB-INF/paginas/operaciones/actualizarStock.jsp"/>
+<jsp:include page="/WEB-INF/paginas/operaciones/confirmarDelete.jsp"/>

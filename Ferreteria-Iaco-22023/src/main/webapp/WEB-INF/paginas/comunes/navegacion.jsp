@@ -12,6 +12,7 @@
                    class="btn btn-success btn-block">
                     Visualizar Activos
                 </a>
+
                 <a href="${pageContext.request.contextPath}/servletControlador?accion=visualizarEliminados" 
                    class="btn btn-secondary btn-block">
                     Visualizar Eliminados

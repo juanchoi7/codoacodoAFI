@@ -1,6 +1,7 @@
 package model;
 
 public class Ferreteria {
+
     private int idtornillo;
     private String codigoSku;
     private String descripcion;
@@ -22,6 +23,15 @@ public class Ferreteria {
         this.descripcion = descripcion;
         this.pesoUnidad = pesoUnidad;
         this.precio = precio;
+        this.stock = stock;
+    }
+
+    public Ferreteria(int idtornillo) {
+        this.idtornillo = idtornillo;
+    }
+
+    public Ferreteria(int idtornillo, int stock) {
+        this.idtornillo = idtornillo;
         this.stock = stock;
     }
 
